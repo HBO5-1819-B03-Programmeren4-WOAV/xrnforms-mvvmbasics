@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace XrnCourse.MvvmBasics
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace XrnCourse.MvvmBasics.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ClassmateView : ContentPage
     {
-        public MainPage()
+        public ClassmateView()
         {
             InitializeComponent();
         }

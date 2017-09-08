@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XrnCourse.MvvmBasics.Views.ClassmateView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{StaticResource MainLayout}">
+                <Label Text="Name" />
+                <Entry Placeholder="Enter classmate's name" Keyboard="Text" />
+                <Label Text="Phone" />
+                <Entry Placeholder="Enter phone number" Keyboard="Telephone" />
+                <Label Text="Birthdate" />
+                <DatePicker />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
