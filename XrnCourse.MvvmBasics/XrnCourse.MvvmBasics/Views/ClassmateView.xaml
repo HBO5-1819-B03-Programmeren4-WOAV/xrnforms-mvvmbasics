@@ -14,6 +14,7 @@
                 <Entry Placeholder="Enter phone number" Keyboard="Telephone" />
                 <Label Text="Birthdate" />
                 <DatePicker />
+                <Label Text="Age: Unknown" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
