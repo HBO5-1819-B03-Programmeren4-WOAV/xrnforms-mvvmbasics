@@ -22,7 +22,7 @@ namespace XrnCourse.MvvmBasics.Domain.Services
         /// <summary>
         /// Gets all classmates in memory collection
         /// </summary>
-        private async Task<IEnumerable<Classmate>> GetAll()
+        public async Task<IEnumerable<Classmate>> GetAll()
         {
             await Task.Delay(0);
             return inMemClassmates;
@@ -31,7 +31,7 @@ namespace XrnCourse.MvvmBasics.Domain.Services
         /// <summary>
         /// Gets a classmates from memory collection based on Id
         /// </summary>
-        private async Task<Classmate> GetById(Guid id)
+        public async Task<Classmate> GetById(Guid id)
         {
             await Task.Delay(0);
             return inMemClassmates.FirstOrDefault(cm => cm.Id == id);
@@ -40,7 +40,7 @@ namespace XrnCourse.MvvmBasics.Domain.Services
         /// <summary>
         /// Saves a classmate to memory collection. Updates if existing, Adds if non-existing
         /// </summary>
-        private async Task Save(Classmate classMate)
+        public async Task Save(Classmate classMate)
         {
             var mate = await GetById(classMate.Id);
             if(mate == null)
