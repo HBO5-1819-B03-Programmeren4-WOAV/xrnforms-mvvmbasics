@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XrnCourse.MvvmBasics.Constants;
 using XrnCourse.MvvmBasics.Domain.Models;
 using XrnCourse.MvvmBasics.Domain.Services;
 
@@ -90,6 +91,9 @@ namespace XrnCourse.MvvmBasics.ViewModels
                 currentClassmate.Phone = Phone;
                 currentClassmate.Birthdate = Birthdate;
                 await classmateService.Save(currentClassmate);
+                //publish message
+                MessagingCenter.Send<ClassmateViewModel, Classmate>(this, 
+                    MessageNames.ClassmateSaved, currentClassmate);
             });
     }
 }

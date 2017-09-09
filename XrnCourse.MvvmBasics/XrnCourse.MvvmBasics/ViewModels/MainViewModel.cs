@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XrnCourse.MvvmBasics.Constants;
 using XrnCourse.MvvmBasics.Domain.Models;
 using XrnCourse.MvvmBasics.Domain.Services;
 using XrnCourse.MvvmBasics.Views;
@@ -24,6 +25,16 @@ namespace XrnCourse.MvvmBasics.ViewModels
             classmateService = new ClassmateInMemoryService();
             //initialize the Classmates collection
             Classmates = new ObservableCollection<Classmate>(classmateService.GetAll().Result);
+
+            MessagingCenter.Subscribe(this, MessageNames.ClassmateSaved, 
+                async (ClassmateViewModel sender, Classmate classmate) => {
+                    Classmates = new ObservableCollection<Classmate>(await classmateService.GetAll());
+                });
+        }
+
+        ~MainViewModel(){
+            //this is completely unnecessary, just showing how to use the Unsubscribe method!
+            MessagingCenter.Unsubscribe<ClassmateViewModel, Classmate>(this, MessageNames.ClassmateSaved);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,13 +58,6 @@ namespace XrnCourse.MvvmBasics.ViewModels
                 RaisePropertyChanged(nameof(Classmates));
             }
         }
-
-
-        public ICommand RefreshCommand => new Command(
-            async () => {
-                Classmates = new ObservableCollection<Classmate>(
-                    (await classmateService.GetAll()).OrderBy(e => e.Name).ToList());
-            });
 
         public ICommand SortCommand => new Command(
             async () =>
