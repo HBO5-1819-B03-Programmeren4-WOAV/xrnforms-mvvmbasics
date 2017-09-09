@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using XrnCourse.MvvmBasics.Domain.Models;
 using XrnCourse.MvvmBasics.Domain.Services;
 
@@ -12,16 +13,18 @@ namespace XrnCourse.MvvmBasics.ViewModels
     public class ClassmateViewModel : INotifyPropertyChanged
     {
         private ClassmateInMemoryService classmateService;
-        private Classmate CurrentClassmate;
+        private Classmate currentClassmate;
+        private INavigation navigation;
 
-        public ClassmateViewModel()
+        public ClassmateViewModel(Classmate classmate, INavigation navigation)
         {
+            this.navigation = navigation;
+            this.currentClassmate = classmate;
             classmateService = new ClassmateInMemoryService();
-            //initialize the properties with data from domain model
-            CurrentClassmate = classmateService.GetAll().Result.FirstOrDefault();
-            this.Name = CurrentClassmate.Name;
-            this.Phone = CurrentClassmate.Phone;
-            this.Birthdate = CurrentClassmate.Birthdate;
+            //initialize the properties with the given classmate;
+            this.Name = currentClassmate.Name;
+            this.Phone = currentClassmate.Phone;
+            this.Birthdate = currentClassmate.Birthdate;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

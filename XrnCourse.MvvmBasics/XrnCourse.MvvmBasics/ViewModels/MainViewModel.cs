@@ -7,15 +7,19 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using XrnCourse.MvvmBasics.Domain.Models;
 using XrnCourse.MvvmBasics.Domain.Services;
+using XrnCourse.MvvmBasics.Views;
 
 namespace XrnCourse.MvvmBasics.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
         private ClassmateInMemoryService classmateService;
+        private INavigation navigation;
 
-        public MainViewModel()
+        public MainViewModel(INavigation navigation)
         {
+            this.navigation = navigation;
+
             classmateService = new ClassmateInMemoryService();
             //initialize the Classmates collection
             Classmates = new ObservableCollection<Classmate>(classmateService.GetAll().Result);
@@ -54,7 +58,7 @@ namespace XrnCourse.MvvmBasics.ViewModels
 
         public ICommand ViewClassmateCommand => new Command<Classmate>(
             (Classmate classmate) => {
-                Debug.WriteLine((classmate as Classmate).Name);
+                navigation.PushAsync(new ClassmateView(classmate));
             });
     }
 }
