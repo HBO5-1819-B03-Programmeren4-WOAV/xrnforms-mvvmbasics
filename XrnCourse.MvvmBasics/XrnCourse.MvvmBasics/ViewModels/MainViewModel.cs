@@ -51,5 +51,10 @@ namespace XrnCourse.MvvmBasics.ViewModels
                 //reset the collection
                 Classmates = new ObservableCollection<Classmate>(sortedMates);
             });
+
+        public ICommand ViewClassmateCommand => new Command<ItemTappedEventArgs>(
+            (ItemTappedEventArgs args) => {
+                Debug.WriteLine((args.Item as Classmate).Name);
+            });
     }
 }
