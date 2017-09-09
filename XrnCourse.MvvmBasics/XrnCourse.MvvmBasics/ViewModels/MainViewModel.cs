@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -46,6 +47,13 @@ namespace XrnCourse.MvvmBasics.ViewModels
                 RaisePropertyChanged(nameof(Classmates));
             }
         }
+
+
+        public ICommand RefreshCommand => new Command(
+            async () => {
+                Classmates = new ObservableCollection<Classmate>(
+                    (await classmateService.GetAll()).OrderBy(e => e.Name).ToList());
+            });
 
         public ICommand SortCommand => new Command(
             async () =>

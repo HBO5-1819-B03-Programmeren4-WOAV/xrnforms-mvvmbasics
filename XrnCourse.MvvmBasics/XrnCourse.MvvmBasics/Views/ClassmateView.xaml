@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:XrnCourse.MvvmBasics.Converters"
              x:Class="XrnCourse.MvvmBasics.Views.ClassmateView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:AgeToAgeStringConverter x:Key="AgeToAgeStringConv" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save"></ToolbarItem>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
@@ -14,7 +20,7 @@
                 <Entry Text="{Binding Phone}" Placeholder="Enter phone number" Keyboard="Telephone" />
                 <Label Text="Birthdate" />
                 <DatePicker Date="{Binding Birthdate}" />
-                <Label Text="{Binding Age}" />
+                <Label Text="{Binding Age, Converter={StaticResource AgeToAgeStringConv}}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

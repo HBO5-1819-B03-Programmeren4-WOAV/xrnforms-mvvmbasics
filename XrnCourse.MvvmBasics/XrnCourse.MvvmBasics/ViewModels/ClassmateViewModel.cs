@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using XrnCourse.MvvmBasics.Domain.Models;
 using XrnCourse.MvvmBasics.Domain.Services;
@@ -49,6 +51,7 @@ namespace XrnCourse.MvvmBasics.ViewModels
             }
         }
 
+
         private string phone;
         public string Phone
         {
@@ -68,6 +71,7 @@ namespace XrnCourse.MvvmBasics.ViewModels
             {
                 birthdate = value;
                 RaisePropertyChanged(nameof(Birthdate));
+                RaisePropertyChanged(nameof(Age));
             }
         }
 
@@ -80,5 +84,12 @@ namespace XrnCourse.MvvmBasics.ViewModels
             }
         }
 
+        public ICommand SaveCommand => new Command(
+            async () => {
+                currentClassmate.Name = Name;
+                currentClassmate.Phone = Phone;
+                currentClassmate.Birthdate = Birthdate;
+                await classmateService.Save(currentClassmate);
+            });
     }
 }

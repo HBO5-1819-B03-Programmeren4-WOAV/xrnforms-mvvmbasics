@@ -12,5 +12,11 @@ namespace XrnCourse.MvvmBasics.Views
             InitializeComponent();
             BindingContext = new MainViewModel(this.Navigation);
         }
+
+        protected override void OnAppearing()
+        {
+            (BindingContext as MainViewModel)?.RefreshCommand?.Execute(null);
+            base.OnAppearing();
+        }
     }
 }
