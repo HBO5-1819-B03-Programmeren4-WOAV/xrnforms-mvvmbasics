@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Behaviors\BindableBehavior.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
+    <Compile Include="Converters\ItemTappedEventArgsConverter.cs" />
     <Compile Include="Domain\Models\Classmate.cs" />
     <Compile Include="Domain\Services\ClassmateInMemoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

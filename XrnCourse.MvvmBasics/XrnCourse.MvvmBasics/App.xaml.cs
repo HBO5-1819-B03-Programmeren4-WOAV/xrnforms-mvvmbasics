@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using XrnCourse.MvvmBasics.Views;
 
 namespace XrnCourse.MvvmBasics
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         public App()

@@ -52,9 +52,9 @@ namespace XrnCourse.MvvmBasics.ViewModels
                 Classmates = new ObservableCollection<Classmate>(sortedMates);
             });
 
-        public ICommand ViewClassmateCommand => new Command<ItemTappedEventArgs>(
-            (ItemTappedEventArgs args) => {
-                Debug.WriteLine((args.Item as Classmate).Name);
+        public ICommand ViewClassmateCommand => new Command<Classmate>(
+            (Classmate classmate) => {
+                Debug.WriteLine((classmate as Classmate).Name);
             });
     }
 }
