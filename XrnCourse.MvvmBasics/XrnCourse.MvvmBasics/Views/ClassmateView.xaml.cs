@@ -14,8 +14,9 @@ namespace XrnCourse.MvvmBasics.Views
         public ClassmateView(Classmate classmate)
         {
             InitializeComponent();
-            IClassmateService cmService = IocRegistry.Container.Resolve<IClassmateService>();
-            BindingContext = new ClassmateViewModel(classmate, this.Navigation, cmService);
+            BindingContext = IocRegistry.Container.Resolve<ClassmateViewModel>(
+                new NamedParameter("classmate", classmate),
+                new NamedParameter("navigation", this.Navigation));
         }
     }
 }

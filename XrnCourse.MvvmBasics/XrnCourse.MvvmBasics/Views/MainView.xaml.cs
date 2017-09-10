@@ -13,8 +13,8 @@ namespace XrnCourse.MvvmBasics.Views
         public MainView()
         {
             InitializeComponent();
-            IClassmateService cmService = IocRegistry.Container.Resolve<IClassmateService>();
-            BindingContext = new MainViewModel(this.Navigation, cmService);
+            BindingContext = IocRegistry.Container
+                    .Resolve<MainViewModel>(new NamedParameter("navigation", this.Navigation));
         }
     }
 }
