@@ -7,7 +7,7 @@ using XrnCourse.MvvmBasics.Domain.Models;
 
 namespace XrnCourse.MvvmBasics.Domain.Services
 {
-    public class ClassmateInMemoryService
+    public class ClassmateInMemoryService : IClassmateService
     {
         static List<Classmate> inMemClassmates = new List<Classmate>
         {

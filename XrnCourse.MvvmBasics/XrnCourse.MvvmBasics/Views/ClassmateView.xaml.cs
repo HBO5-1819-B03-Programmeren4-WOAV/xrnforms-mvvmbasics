@@ -1,6 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XrnCourse.MvvmBasics.Domain.Models;
+using XrnCourse.MvvmBasics.Domain.Services;
+using XrnCourse.MvvmBasics.IoC;
 using XrnCourse.MvvmBasics.ViewModels;
 
 namespace XrnCourse.MvvmBasics.Views
@@ -11,7 +14,8 @@ namespace XrnCourse.MvvmBasics.Views
         public ClassmateView(Classmate classmate)
         {
             InitializeComponent();
-            BindingContext = new ClassmateViewModel(classmate, this.Navigation);
+            IClassmateService cmService = IocRegistry.Container.Resolve<IClassmateService>();
+            BindingContext = new ClassmateViewModel(classmate, this.Navigation, cmService);
         }
     }
 }

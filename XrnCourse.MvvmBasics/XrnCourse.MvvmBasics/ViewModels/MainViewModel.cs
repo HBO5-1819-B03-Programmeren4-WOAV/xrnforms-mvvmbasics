@@ -15,14 +15,13 @@ namespace XrnCourse.MvvmBasics.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private ClassmateInMemoryService classmateService;
+        private IClassmateService classmateService;
         private INavigation navigation;
 
-        public MainViewModel(INavigation navigation)
+        public MainViewModel(INavigation navigation, IClassmateService cmService)
         {
             this.navigation = navigation;
-
-            classmateService = new ClassmateInMemoryService();
+            classmateService = cmService;
             //initialize the Classmates collection
             Classmates = new ObservableCollection<Classmate>(classmateService.GetAll().Result);
 

@@ -15,15 +15,17 @@ namespace XrnCourse.MvvmBasics.ViewModels
 {
     public class ClassmateViewModel : INotifyPropertyChanged
     {
-        private ClassmateInMemoryService classmateService;
+        private IClassmateService classmateService;
         private Classmate currentClassmate;
         private INavigation navigation;
 
-        public ClassmateViewModel(Classmate classmate, INavigation navigation)
+        public ClassmateViewModel(Classmate classmate, 
+            INavigation navigation, 
+            IClassmateService cmService)
         {
             this.navigation = navigation;
             this.currentClassmate = classmate;
-            classmateService = new ClassmateInMemoryService();
+            classmateService = cmService;
             //initialize the properties with the given classmate;
             this.Name = currentClassmate.Name;
             this.Phone = currentClassmate.Phone;
